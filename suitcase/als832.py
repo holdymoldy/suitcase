@@ -448,6 +448,9 @@ def ingest(fname, fs=None):
 
             # localize the timestamp
             tz = pytz.timezone('America/Los_Angeles')
+            # ts = tz.localize(datetime.strptime(
+            #     bundled_dicts['start']['sdate'],
+            #     '%A, %B %d, %Y')).timestamp()
             ts = tz.localize(datetime.strptime(
                 bundled_dicts['start']['sdate'],
                 '%m-%d-%Y %H:%M:%S')).timestamp()
@@ -567,7 +570,7 @@ def ingest(fname, fs=None):
                     data = {'image': dset[:].squeeze()}
                 ev_ts = tz.localize(
                     datetime.strptime(dset.attrs['date'].decode(),
-                                      '%Y-%m-%dT%H:%MZ')).timestamp()
+                                      '%A, %B %d, %Y')).timestamp()
                 if ev_ts > stop_ts:
                     stop_ts = ev_ts
                 yield 'event', {
