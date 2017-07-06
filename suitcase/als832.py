@@ -448,9 +448,6 @@ def ingest(fname, fs=None):
 
             # localize the timestamp
             tz = pytz.timezone('America/Los_Angeles')
-            # ts = tz.localize(datetime.strptime(
-            #     bundled_dicts['start']['sdate'],
-            #     '%A, %B %d, %Y')).timestamp()
             ts = tz.localize(datetime.strptime(
                 bundled_dicts['start']['sdate'],
                 '%m-%d-%Y %H:%M:%S')).timestamp()
